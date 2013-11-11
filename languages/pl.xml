@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!-- For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/ -->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		
+		<title lang="en">Full Quick Reply Editor</title>
+		
+		<description lang="en">Extends basic quick reply editor to the full version with post icons, smilies and BBCode buttons. Allows users to disable editor in UCP and make it visible if guest posting is enabled. Adds selective quote option available through default button.</description>
+		<description lang="pl">Rozszerza podstawowy edytor szybkiej odpowiedzi o ikony posta, emotikony i znaczniki BBCode. Daje użytkownikom możliwość wyłączenia edytora oraz czyni go widocznym, jeśli opcja zamieszczania postów przez gości jest włączona. Dodaje ponadto funkcję cytowania selektywnego, dostępną pod domyślnym przyciskiem.</description>
+		
+		<author-notes lang="en">Works only with phpBB 3.0.6 and above!</author-notes>
+		<author-notes lang="pl">Działa wyłącznie na phpBB 3.0.6 i nowszym!</author-notes>
+		
+		<author-group>
+			<author>
+				<realname>Jarosław Pustuła</realname>
+				<username>medeish</username>
+				<homepage>http://inventia.io</homepage>
+				<email>office@inventia.io</email>
+				<contributions-group>
+					<contributions status="current" from="2009-11-26" position="Developer"></contributions>
+				</contributions-group>
+			</author>
+		</author-group>
+		
+		<mod-version>2.1.0</mod-version>
+		
+		<installation>
+			<level>easy</level>
+			<time>600</time>
+			<target-version>3.0.7-PL1</target-version>
+		</installation>
+		
+		<history>
+			<entry>
+				<date>2009-11-26</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change>Initial release</change>
+				</changelog>
+				<changelog lang="pl">
+					<change>Pierwsze wydanie</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-12-24</date>
+				<rev-version>1.0.1</rev-version>
+				<changelog lang="en">
+					<change>Fixed undefined variable notice in debug mode</change>
+				</changelog>
+				<changelog lang="pl">
+					<change>Poprawiono komunikat o niezdefiniowanej zmiennej</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2010-03-28</date>
+				<rev-version>2.0.0</rev-version>
+				<changelog lang="en">
+					<change>Quick Reply is expanded by default</change>
+					<change>Added selective quoting based on phpBB's feature</change>
+					<change>Added button to save post draft</change>
+					<change>Adjusted to phpBB 3.0.7</change>
+					<change>Updated MODX to version 1.2.5</change>
+				</changelog>
+				<changelog lang="pl">
+					<change>Szybka odpowiedź jest domyślnie rozwinięta</change>
+					<change>Dodano funkcję cytowania selektywnego, opartą o wbudowany mechanizm</change>
+					<change>Dodano przycisk do zapisywania szkicu posta</change>
+					<change>Przystosowano do phpBB 3.0.7</change>
+					<change>Zaktualizowano MODX do wersji 1.2.5</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2010-05-04</date>
+				<rev-version>2.0.1</rev-version>
+				<changelog lang="en">
+					<change>Updated instruction to work with newest AutoMOD</change>
+					<change>Changed $user->setup() method to $user->add_lang() in viewtopic.php</change>
+				</changelog>
+				<changelog lang="pl">
+					<change>Przystosowano instrukcję dla najnowszego AutoMOD–a</change>
+					<change>Zmieniono metodę $user->setup() na $user->add_lang() w pliku viewtopic.php</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2010-11-04</date>
+				<rev-version>2.1.0</rev-version>
+				<changelog lang="en">
+					<change>Added option in UCP to enable or disable Quick Reply by user</change>
+					<change>Removed not necessary BBCode status information</change>
+					<change>Quick Reply visible for non-registered users if guest posting is enabled</change>
+				</changelog>
+				<changelog lang="pl">
+					<change>Dodano opcję w panelu zarządzania kontem, pozwalającą użytkownikowi na włączenie lub wyłącznie szybkiej odpowiedzi</change>
+					<change>Usunięto zbędne informacje o statusie BBCode</change>
+					<change>Szybka odpowiedź widoczna dla niezarejestrowanych użytkowników, jeśli pisanie przez gości jest włączone</change>
+				</changelog>
+			</entry>
+		</history>
+		
+		<link-group>
+			<link type="parent" href="../install.xml" lang="en">install.xml</link>
+			<link type="language" href="de.xml" lang="en">de.xml</link>
+			<link type="template" href="../templates/subsilver2.xml" lang="en">subsilver2.xml</link>
+		</link-group>
+	</header>
+	
+	<action-group>
+		<open src="language/pl/ucp.php">
+			<edit>
+				<find><![CDATA[	'VIEW_POSTS_KEY'		=> 'Wyświetlaj posty wg',]]></find>
+				<action type="after-add"><![CDATA[	'VIEW_QUICK_REPLY'		=> 'Wyświetlaj szybką odpowiedź',]]></action>
+			</edit>
+		</open>
+	</action-group>
+</mod>

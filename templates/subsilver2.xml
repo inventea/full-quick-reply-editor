@@ -5,32 +5,31 @@
 	<header>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
 		
-		<title lang="en"><![CDATA[Full Quick Reply Editor]]></title>
-		<title lang="pl"><![CDATA[Full Quick Reply Editor]]></title>
+		<title lang="en">Full Quick Reply Editor</title>
 		
-		<description lang="en"><![CDATA[Expands quick reply by default and transforms basic editor into full version with post icons, emoticons and BBCode buttons. Adds selective quoting option available through default button.]]></description>
-		<description lang="pl"><![CDATA[Rozwija domyślnie szybką odpowiedź oraz rozszerza funkcje podstawowego edytora o ikony posta, emotikony i znaczniki BBCode. Dodaje opcję cytowania selektywnego dostępną pod domyślnym przyciskiem.]]></description>
+		<description lang="en">Extends basic quick reply editor to the full version with post icons, smilies and BBCode buttons. Allows users to disable editor in UCP and make it visible if guest posting is enabled. Adds selective quote option available through default button.</description>
+		<description lang="pl">Rozszerza podstawowy edytor szybkiej odpowiedzi o ikony posta, emotikony i znaczniki BBCode. Daje użytkownikom możliwość wyłączenia edytora oraz czyni go widocznym, jeśli opcja zamieszczania postów przez gości jest włączona. Dodaje ponadto funkcję cytowania selektywnego, dostępną pod domyślnym przyciskiem.</description>
 		
-		<author-notes lang="en"><![CDATA[Works only with phpBB 3.0.6 and above! Premoded files in contrib/ directory.]]></author-notes>
-		<author-notes lang="pl"><![CDATA[Działa wyłącznie na phpBB 3.0.6 i nowszym! Zmodyfikowane pliki w katalogu contrib/.]]></author-notes>
+		<author-notes lang="en">Works only with phpBB 3.0.6 and above!</author-notes>
+		<author-notes lang="pl">Działa wyłącznie na phpBB 3.0.6 i nowszym!</author-notes>
 		
 		<author-group>
 			<author>
-				<realname><![CDATA[Jarosław Pustuła]]></realname>
-				<username><![CDATA[medeish]]></username>
-				<homepage><![CDATA[http://inventia.io]]></homepage>
-				<email><![CDATA[office@inventia.io]]></email>
+				<realname>Jarosław Pustuła</realname>
+				<username>medeish</username>
+				<homepage>http://inventia.io</homepage>
+				<email>office@inventia.io</email>
 				<contributions-group>
 					<contributions status="current" from="2009-11-26" position="Developer"></contributions>
 				</contributions-group>
 			</author>
 		</author-group>
 		
-		<mod-version>2.0.1</mod-version>
+		<mod-version>2.1.0</mod-version>
 		
 		<installation>
 			<level>easy</level>
-			<time>300</time>
+			<time>600</time>
 			<target-version>3.0.7-PL1</target-version>
 		</installation>
 		
@@ -39,53 +38,73 @@
 				<date>2009-11-26</date>
 				<rev-version>1.0.0</rev-version>
 				<changelog lang="en">
-					<change><![CDATA[Initial release]]></change>
+					<change>Initial release</change>
 				</changelog>
 				<changelog lang="pl">
-					<change><![CDATA[Pierwsze wydanie]]></change>
+					<change>Pierwsze wydanie</change>
 				</changelog>
 			</entry>
 			<entry>
 				<date>2009-12-24</date>
 				<rev-version>1.0.1</rev-version>
 				<changelog lang="en">
-					<change><![CDATA[Fixed undefined variable notice in debug mode]]></change>
+					<change>Fixed undefined variable notice in debug mode</change>
 				</changelog>
 				<changelog lang="pl">
-					<change><![CDATA[Poprawiono komunikat o niezdefiniowanej zmiennej]]></change>
+					<change>Poprawiono komunikat o niezdefiniowanej zmiennej</change>
 				</changelog>
 			</entry>
 			<entry>
 				<date>2010-03-28</date>
 				<rev-version>2.0.0</rev-version>
 				<changelog lang="en">
-					<change><![CDATA[Quick reply is expanded by default]]></change>
-					<change><![CDATA[Added selective quoting based on phpBB's feature]]></change>
-					<change><![CDATA[Added button to save post draft]]></change>
-					<change><![CDATA[Adjusted to phpBB 3.0.7]]></change>
-					<change><![CDATA[Updated MODX to version 1.2.5]]></change>
+					<change>Quick Reply is expanded by default</change>
+					<change>Added selective quoting based on phpBB's feature</change>
+					<change>Added button to save post draft</change>
+					<change>Adjusted to phpBB 3.0.7</change>
+					<change>Updated MODX to version 1.2.5</change>
 				</changelog>
 				<changelog lang="pl">
-					<change><![CDATA[Szybka odpowiedź jest domyślnie rozwinięta]]></change>
-					<change><![CDATA[Dodano cytowanie selektywne oparte na wbudowanych funkcjach]]></change>
-					<change><![CDATA[Dodano przycisk do zapisywania szkicu posta]]></change>
-					<change><![CDATA[Przystosowano do phpBB 3.0.7]]></change>
-					<change><![CDATA[Zaktualizowano MODX do wersji 1.2.5]]></change>
+					<change>Szybka odpowiedź jest domyślnie rozwinięta</change>
+					<change>Dodano funkcję cytowania selektywnego, opartą o wbudowany mechanizm</change>
+					<change>Dodano przycisk do zapisywania szkicu posta</change>
+					<change>Przystosowano do phpBB 3.0.7</change>
+					<change>Zaktualizowano MODX do wersji 1.2.5</change>
 				</changelog>
 			</entry>
 			<entry>
 				<date>2010-05-04</date>
 				<rev-version>2.0.1</rev-version>
 				<changelog lang="en">
-					<change><![CDATA[Updated modification instruction to work with newest AutoMOD]]></change>
-					<change><![CDATA[Changed $user->setup() method to $user->add_lang() in viewtopic.php]]></change>
+					<change>Updated instruction to work with newest AutoMOD</change>
+					<change>Changed $user->setup() method to $user->add_lang() in viewtopic.php</change>
 				</changelog>
 				<changelog lang="pl">
-					<change><![CDATA[Przystosowano instrukcję modyfikacji dla najnowszego AutoMOD–a]]></change>
-					<change><![CDATA[Zmieniono metodę $user->setup() na $user->add_lang() w pliku viewtopic.php]]></change>
+					<change>Przystosowano instrukcję dla najnowszego AutoMOD–a</change>
+					<change>Zmieniono metodę $user->setup() na $user->add_lang() w pliku viewtopic.php</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2010-11-04</date>
+				<rev-version>2.1.0</rev-version>
+				<changelog lang="en">
+					<change>Added option in UCP to enable or disable Quick Reply by user</change>
+					<change>Removed not necessary BBCode status information</change>
+					<change>Quick Reply visible for non-registered users if guest posting is enabled</change>
+				</changelog>
+				<changelog lang="pl">
+					<change>Dodano opcję w panelu zarządzania kontem, pozwalającą użytkownikowi na włączenie lub wyłącznie szybkiej odpowiedzi</change>
+					<change>Usunięto zbędne informacje o statusie BBCode</change>
+					<change>Szybka odpowiedź widoczna dla niezarejestrowanych użytkowników, jeśli pisanie przez gości jest włączone</change>
 				</changelog>
 			</entry>
 		</history>
+		
+		<link-group>
+			<link type="parent" href="../install.xml" lang="en">install.xml</link>
+			<link type="language" href="../languages/de.xml" lang="en">de.xml</link>
+			<link type="language" href="../languages/pl.xml" lang="en">pl.xml</link>
+		</link-group>
 	</header>
 	
 	<action-group>
@@ -98,7 +117,13 @@
 				<find><![CDATA[		<tr>
 			<th align="center" colspan="2">{L_QUICKREPLY}</th>
 		</tr>]]></find>
-				<action type="after-add"><![CDATA[		<!-- IF S_SHOW_TOPIC_ICONS -->
+				<action type="after-add"><![CDATA[		<!-- IF S_DISPLAY_USERNAME -->
+			<tr>
+				<td class="row1"><b class="genmed">{L_USERNAME}:</b></td>
+				<td class="row2"><input class="post" type="text" tabindex="1" name="username" size="25" value="{USERNAME}" /></td>
+			</tr>
+		<!-- ENDIF -->
+		<!-- IF S_SHOW_TOPIC_ICONS -->
 		<tr>
 			<td class="row1"><b class="genmed">{L_ICON}:</b></td>
 			<td class="row2">
@@ -112,9 +137,12 @@
 		<!-- ENDIF -->]]></action>
 			</edit>
 			<edit>
-				<find><![CDATA[			<td class="row1" width="22%"><b class="genmed">{L_MESSAGE}:</b></td>
-			<td class="row2" valign="top" align="left" width="78%"><textarea name="message" rows="7" cols="76" tabindex="3"  style="width: 98%;"></textarea> </td>]]></find>
-				<action type="replace-with"><![CDATA[			<td class="row1" valign="top"><b class="genmed">{L_MESSAGE_BODY}:</b><br /><span class="gensmall">{L_MESSAGE_BODY_EXPLAIN}&nbsp;</span><br /><br />
+				<find><![CDATA[		<tr>
+			<td class="row1" width="22%"><b class="genmed">{L_MESSAGE}:</b></td>
+			<td class="row2" valign="top" align="left" width="78%"><textarea name="message" rows="7" cols="76" tabindex="3"  style="width: 98%;"></textarea> </td>
+		</tr>]]></find>
+				<action type="replace-with"><![CDATA[		<tr>
+			<td class="row1" valign="top"><b class="genmed">{L_MESSAGE_BODY}:</b><br /><span class="gensmall">{L_MESSAGE_BODY_EXPLAIN}&nbsp;</span><br /><br />
 			<!-- IF S_SMILIES_ALLOWED -->
 				<table width="100%" cellspacing="5" cellpadding="0" border="0" align="center">
 				<tr>
@@ -160,7 +188,11 @@
 					<!-- ENDIF -->
 				</tr>
 				</table>
-			</td>]]></action>
+			</td>
+		</tr>
+		<!-- IF CAPTCHA_TEMPLATE and S_CONFIRM_CODE -->
+			<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
+		<!-- ENDIF -->]]></action>
 			</edit>
 			<edit>
 				<find><![CDATA[				<input class="btnmain" type="submit" accesskey="s" tabindex="6" name="post" value="{L_SUBMIT}" />&nbsp;
@@ -174,6 +206,23 @@
 			</edit>
 		</open>
 
+		<open src="styles/subsilver2/template/ucp_prefs_view.html">
+			<edit>
+				<find><![CDATA[<!-- IF S_CHANGE_CENSORS -->
+	<tr>
+		<td class="row1" width="50%"><b class="genmed">{L_DISABLE_CENSORS}:</b></td>
+		<td class="row2"><input type="radio" class="radio" name="wordcensor" value="1"<!-- IF S_DISABLE_CENSORS --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_YES}</span>&nbsp; &nbsp;<input type="radio" class="radio" name="wordcensor" value="0"<!-- IF not S_DISABLE_CENSORS --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_NO}</span></td>
+	</tr>
+<!-- ENDIF -->]]></find>
+				<action type="after-add"><![CDATA[<!-- IF S_QUICK_REPLY -->
+	<tr>
+		<td class="row1" width="50%"><b class="genmed">{L_VIEW_QUICK_REPLY}:</b></td>
+		<td class="row2"><input type="radio" class="radio" name="quickreply" value="1"<!-- IF S_USER_QUICK_REPLY --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_YES}</span>&nbsp; &nbsp;<input type="radio" class="radio" name="quickreply" value="0"<!-- IF not S_USER_QUICK_REPLY --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_NO}</span></td>
+	</tr>
+<!-- ENDIF -->]]></action>
+			</edit>
+		</open>
+		
 		<open src="styles/subsilver2/template/viewtopic_body.html">
 			<edit>
 				<find><![CDATA[						<div class="postbody">{postrow.MESSAGE}</div>]]></find>
@@ -185,12 +234,12 @@
 				<find><![CDATA[			<td><div class="gensmall" style="float: {S_CONTENT_FLOW_BEGIN};">&nbsp;<!-- IF postrow.U_POST_AUTHOR --><a href="{postrow.U_POST_AUTHOR}">{PROFILE_IMG}</a> <!-- ENDIF --> <!-- IF postrow.U_PM --><a href="{postrow.U_PM}">{PM_IMG}</a> <!-- ENDIF --> <!-- IF postrow.U_EMAIL --><a href="{postrow.U_EMAIL}">{EMAIL_IMG}</a> <!-- ENDIF -->&nbsp;</div> <div class="gensmall" style="float: {S_CONTENT_FLOW_END};"><!-- IF not S_IS_BOT --><!-- IF postrow.U_EDIT --><a href="{postrow.U_EDIT}">{EDIT_IMG}</a> <!-- ENDIF --> <!-- IF postrow.U_QUOTE --><a href="{postrow.U_QUOTE}">{QUOTE_IMG}</a> <!-- ENDIF --> <!-- ENDIF -->&nbsp;</div></td>]]></find>
 				<inline-edit>
 					<inline-find><![CDATA[<!-- IF postrow.U_QUOTE --><a href="{postrow.U_QUOTE}">{QUOTE_IMG}</a> <!-- ENDIF -->]]></inline-find>
-					<inline-action type="replace-with"><![CDATA[<!-- IF S_QUICK_REPLY and postrow.DECODED_MESSAGE --><a href="#" onclick="addquote({postrow.POST_ID},'{postrow.POST_AUTHOR}'); return false;">{QUOTE_IMG}</a> <!-- ELSE IF postrow.U_QUOTE --><a href="{postrow.U_QUOTE}">{QUOTE_IMG}</a> <!-- ENDIF -->]]></inline-action>
+					<inline-action type="replace-with"><![CDATA[<!-- IF S_QUICK_REPLY and postrow.DECODED_MESSAGE --><a href="#" onclick="addquote({postrow.POST_ID},'{postrow.POST_AUTHOR}'); return false;">{QUOTE_IMG}</a> <!-- ELSEIF postrow.U_QUOTE --><a href="{postrow.U_QUOTE}">{QUOTE_IMG}</a> <!-- ENDIF -->]]></inline-action>
 				</inline-edit>
 			</edit>
 		</open>
 		
-		<diy-instructions lang="en"><![CDATA[Purge the forum cache and refresh style templates.]]></diy-instructions>
-		<diy-instructions lang="pl"><![CDATA[Wyczyść pamięć podręczną forum oraz odśwież szablony stylu.]]></diy-instructions>
+		<diy-instructions lang="en">Purge forum cache and refresh style templates.</diy-instructions>
+		<diy-instructions lang="pl">Wyczyść pamięć podręczną forum oraz odśwież szablony stylu.</diy-instructions>
 	</action-group>
 </mod>

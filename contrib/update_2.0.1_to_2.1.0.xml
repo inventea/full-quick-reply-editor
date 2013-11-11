@@ -101,9 +101,8 @@
 		</history>
 		
 		<link-group>
-			<link type="language" href="languages/de.xml" lang="en">de.xml</link>
-			<link type="language" href="languages/pl.xml" lang="en">pl.xml</link>
-			<link type="template" href="templates/subsilver2.xml" lang="en">subsilver2.xml</link>
+			<link type="language" href="../languages/de.xml" lang="en">de.xml</link>
+			<link type="language" href="../languages/pl.xml" lang="en">pl.xml</link>
 		</link-group>
 	</header>
 	
@@ -152,86 +151,85 @@
 		
 		<open src="styles/prosilver/template/quickreply_editor.html">
 			<edit>
-				<find><![CDATA[<script type="text/javascript">
-// <![CDATA[
-	function hide_qr(show)
-	{
-		dE('qr_editor_div');
-		dE('qr_showeditor_div');
-		if (show && document.getElementById('qr_editor_div').style.display != 'none')
-		{
-			document.getElementsByName('message')[0].focus();
-		}
-		return true;
-	}
-
-
-	function init_qr()
-	{
-		dE('qr_showeditor_div');
-		return true;
-	}
-	onload_functions.push('init_qr();');
-	// ]]]]><![CDATA[>
-</script>
-<noscript>
-	<form method="post" action="{U_QR_ACTION}">
-		<div class="panel" id="qr_ns_editor_div">
-			<div class="inner"><span class="corners-top"><span></span></span>
-					<h2>{L_QUICKREPLY}</h2>
-					<fieldset class="fields1">
-						<dl style="clear: left;">
-							<dt><label for="subject">{L_SUBJECT}:</label></dt>
-							<dd><input type="text" name="subject" id="subject-ns" size="45" maxlength="64" tabindex="2" value="{SUBJECT}" class="inputbox autowidth" /></dd>
-						</dl>
-					<div id="message-box-ns">
-						<textarea style="height: 9em;" name="message" rows="7" cols="76" tabindex="3" class="inputbox"></textarea>
-					</div>
-					</fieldset>
-					<fieldset class="submit-buttons">
-						{S_FORM_TOKEN}
-						{QR_HIDDEN_FIELDS}
-						<input type="submit" accesskey="s" tabindex="6" name="post" value="{L_SUBMIT}" class="button1" />&nbsp;
-						<input type="submit" accesskey="f" tabindex="7" name="full_editor" value="{L_FULL_EDITOR}" class="button2" />&nbsp;
-					</fieldset>
-			<span class="corners-bottom"><span></span></span></div>
-		</div>
-	</form>
-</noscript>
-<form method="post" action="{U_QR_ACTION}">
-	<div class="panel" style="display: none" id="qr_editor_div">
+				<find><![CDATA[<form id="postform" method="post" action="{U_QR_ACTION}">
+	<div class="panel" id="postingbox">
 		<div class="inner"><span class="corners-top"><span></span></span>
-				<h2>{L_QUICKREPLY}</h2>
-				<fieldset class="fields1">
-					<dl style="clear: left;">
-						<dt><label for="subject">{L_SUBJECT}:</label></dt>
-						<dd><input type="text" name="subject" id="subject" size="45" maxlength="64" tabindex="2" value="{SUBJECT}" class="inputbox autowidth" /></dd>
-					</dl>
-				<div id="message-box">
-					<textarea style="height: 9em;" name="message" rows="7" cols="76" tabindex="3" class="inputbox"></textarea>
-				</div>
-				</fieldset>
-				<fieldset class="submit-buttons">
-					{S_FORM_TOKEN}
-					{QR_HIDDEN_FIELDS}
-					<input type="submit" accesskey="s" tabindex="6" name="post" value="{L_SUBMIT}" class="button1" />&nbsp;
-					<input type="submit" accesskey="f" tabindex="6" name="full_editor" value="{L_FULL_EDITOR}" class="button2" />&nbsp;
-				</fieldset>
-				<a href="" class="right-box up" onclick="hide_qr(false); return false;" title="{L_COLLAPSE_QR}">{L_COLLAPSE_QR}</a>
-		<span class="corners-bottom"><span></span></span></div>
-	</div>
-	<div class="panel" style="display: none" id="qr_showeditor_div" >
-		<div class="inner"><span class="corners-top"><span></span></span>
+		
+		<h2>{L_QUICKREPLY}</h2>
+		
+		<fieldset class="fields1">
+			<!-- IF S_SHOW_TOPIC_ICONS -->
+			<dl>
+				<dt><label for="icon">{L_ICON}:</label></dt>
+				<dd>
+					<label for="icon"><input type="radio" name="icon" id="icon" value="0" checked="checked" /> {L_NO_TOPIC_ICON}</label>
+					<!-- BEGIN topic_icon --><label for="icon-{topic_icon.ICON_ID}"><input type="radio" name="icon" id="icon-{topic_icon.ICON_ID}" value="{topic_icon.ICON_ID}" {topic_icon.S_ICON_CHECKED} /><img src="{topic_icon.ICON_IMG}" width="{topic_icon.ICON_WIDTH}" height="{topic_icon.ICON_HEIGHT}" alt="" title="" /></label> <!-- END topic_icon -->
+				</dd>
+			</dl>
+			<!-- ENDIF -->
 
-			<div class="content">
-				<fieldset class="submit-buttons">
-					<input type="submit" name="show_qr" tabindex="1" class="button2" value="{L_SHOW_QR}" onclick="hide_qr(true);return false;"/>
-				</fieldset>
+			<!-- IF S_DISPLAY_USERNAME -->
+			<dl style="clear: left;">
+				<dt><label for="username">{L_USERNAME}:</label></dt>
+				<dd><input type="text" tabindex="1" name="username" id="username" size="25" value="{USERNAME}" class="inputbox autowidth" /></dd>
+			</dl>
+			<!-- ENDIF -->
+			
+			<dl style="clear: left;">
+				<dt><label for="subject">{L_SUBJECT}:</label></dt>
+				<dd><input type="text" name="subject" id="subject" size="45" maxlength="64" tabindex="2" value="{SUBJECT}" class="inputbox autowidth" /></dd>
+			</dl>
+			
+			<!-- IF CAPTCHA_TEMPLATE and S_CONFIRM_CODE -->
+				<!-- DEFINE $CAPTCHA_TAB_INDEX = 3 -->
+				<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
+			<!-- ENDIF -->
+			
+			<!-- INCLUDE posting_buttons.html -->
+			
+			<div id="smiley-box">
+				<!-- IF S_SMILIES_ALLOWED and .smiley -->
+					<strong>{L_SMILIES}</strong><br />
+					<!-- BEGIN smiley -->
+						<a href="#" onclick="insert_text('{smiley.A_SMILEY_CODE}', true); return false;"><img src="{smiley.SMILEY_IMG}" width="{smiley.SMILEY_WIDTH}" height="{smiley.SMILEY_HEIGHT}" alt="{smiley.SMILEY_CODE}" title="{smiley.SMILEY_DESC}" /></a>
+					<!-- END smiley -->
+				<!-- ENDIF -->
+				<!-- IF S_SHOW_SMILEY_LINK and S_SMILIES_ALLOWED-->
+					<br /><a href="{U_MORE_SMILIES}" onclick="popup(this.href, 300, 350, '_phpbbsmilies'); return false;">{L_MORE_SMILIES}</a>
+				<!-- ENDIF -->
+
+				<!-- IF BBCODE_STATUS -->
+				<!-- IF .smiley --><hr /><!-- ENDIF -->
+				{BBCODE_STATUS}<br />
+				<!-- IF S_BBCODE_ALLOWED -->
+					{IMG_STATUS}<br />
+					{FLASH_STATUS}<br />
+					{URL_STATUS}<br />
+				<!-- ENDIF -->
+				{SMILIES_STATUS}
+				<!-- ENDIF -->
 			</div>
+
+			<div id="message-box">
+				<textarea style="height: 11em;" name="message" rows="7" cols="76" tabindex="3" class="inputbox"></textarea>
+			</div>
+		</fieldset>
+		
 		<span class="corners-bottom"><span></span></span></div>
 	</div>
-</form>
-]]></find>
+	
+	<div class="panel bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+			<fieldset class="submit-buttons">
+				{S_FORM_TOKEN}
+				{QR_HIDDEN_FIELDS}
+				<!-- IF S_SAVE_ALLOWED --><input type="submit" accesskey="k" tabindex="7" name="save" value="{L_SAVE}" class="button2" />&nbsp; <!-- ENDIF -->
+				<input type="submit" tabindex="6" name="preview" value="{L_PREVIEW}" class="button1" onclick="document.getElementById('postform').action += '#preview';" />&nbsp;
+				<input type="submit" accesskey="s" tabindex="6" name="post" value="{L_SUBMIT}" class="button1" />&nbsp;
+			</fieldset>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+</form>]]></find>
 				<action type="replace-with"><![CDATA[<form id="postform" method="post" action="{U_QR_ACTION}">
 	<div class="panel" id="postingbox">
 		<div class="inner"><span class="corners-top"><span></span></span>
@@ -328,118 +326,65 @@
 		
 		<open src="styles/prosilver/template/viewtopic_body.html">
 			<edit>
-				<find><![CDATA[					<!-- IF postrow.U_QUOTE --><li class="quote-icon"><a href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}"><span>{L_REPLY_WITH_QUOTE}</span></a></li><!-- ENDIF -->]]></find>
-				<action type="replace-with"><![CDATA[					<!-- IF S_QUICK_REPLY and postrow.DECODED_MESSAGE --><li class="quote-icon"><a href="#postingbox" onclick="addquote({postrow.POST_ID}, '{postrow.POST_AUTHOR}');" title="{L_QUOTE} {postrow.POST_AUTHOR}"><span>{L_QUOTE} {postrow.POST_AUTHOR}</span></a></li><!-- ELSEIF postrow.U_QUOTE --><li class="quote-icon"><a href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}"><span>{L_REPLY_WITH_QUOTE}</span></a></li><!-- ENDIF -->]]></action>
+				<find><![CDATA[					<!-- IF S_QUICK_REPLY and postrow.DECODED_MESSAGE --><li class="quote-icon"><a href="#postingbox" onclick="addquote({postrow.POST_ID}, '{postrow.POST_AUTHOR}');" title="{L_QUOTE} {postrow.POST_AUTHOR}"><span>{L_QUOTE} {postrow.POST_AUTHOR}</span></a></li><!-- ELSE IF postrow.U_QUOTE --><li class="quote-icon"><a href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}"><span>{L_REPLY_WITH_QUOTE}</span></a></li><!-- ENDIF -->]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<!-- ELSE IF postrow.U_QUOTE -->]]></inline-find>
+					<inline-action type="replace-with"><![CDATA[<!-- ELSEIF postrow.U_QUOTE -->]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		
+		<open src="styles/subsilver2/template/quickreply_editor.html">
+			<edit>
+				<find><![CDATA[		<tr>
+			<th align="center" colspan="2">{L_QUICKREPLY}</th>
+		</tr>]]></find>
+				<action type="after-add"><![CDATA[		<!-- IF S_DISPLAY_USERNAME -->
+			<tr>
+				<td class="row1"><b class="genmed">{L_USERNAME}:</b></td>
+				<td class="row2"><input class="post" type="text" tabindex="1" name="username" size="25" value="{USERNAME}" /></td>
+			</tr>
+		<!-- ENDIF -->]]></action>
 			</edit>
 			<edit>
-				<find><![CDATA[			<div class="content">{postrow.MESSAGE}</div>]]></find>
-				<action type="after-add"><![CDATA[			<!-- IF postrow.U_QUOTE and postrow.DECODED_MESSAGE -->
-				<div id="message_{postrow.POST_ID}" style="display: none;">{postrow.DECODED_MESSAGE}</div>
-			<!-- ENDIF -->]]></action>
+				<find><![CDATA[		<tr>
+			<td class="cat" colspan="2" align="center">]]></find>
+				<action type="before-add"><![CDATA[		<!-- IF CAPTCHA_TEMPLATE and S_CONFIRM_CODE -->
+			<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
+		<!-- ENDIF -->]]></action>
+			</edit>
+		</open>
+		
+		<open src="styles/subsilver2/template/ucp_prefs_view.html">
+			<edit>
+				<find><![CDATA[<!-- IF S_CHANGE_CENSORS -->
+	<tr>
+		<td class="row1" width="50%"><b class="genmed">{L_DISABLE_CENSORS}:</b></td>
+		<td class="row2"><input type="radio" class="radio" name="wordcensor" value="1"<!-- IF S_DISABLE_CENSORS --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_YES}</span>&nbsp; &nbsp;<input type="radio" class="radio" name="wordcensor" value="0"<!-- IF not S_DISABLE_CENSORS --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_NO}</span></td>
+	</tr>
+<!-- ENDIF -->]]></find>
+				<action type="after-add"><![CDATA[<!-- IF S_QUICK_REPLY -->
+	<tr>
+		<td class="row1" width="50%"><b class="genmed">{L_VIEW_QUICK_REPLY}:</b></td>
+		<td class="row2"><input type="radio" class="radio" name="quickreply" value="1"<!-- IF S_USER_QUICK_REPLY --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_YES}</span>&nbsp; &nbsp;<input type="radio" class="radio" name="quickreply" value="0"<!-- IF not S_USER_QUICK_REPLY --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_NO}</span></td>
+	</tr>
+<!-- ENDIF -->]]></action>
 			</edit>
 		</open>
 		
 		<open src="viewtopic.php">
 			<edit>
-				<find><![CDATA[include($phpbb_root_path . 'includes/functions_display.' . $phpEx);]]></find>
-				<action type="after-add"><![CDATA[include($phpbb_root_path . 'includes/functions_posting.' . $phpEx);]]></action>
+				<find><![CDATA[if ($user->data['is_registered'] && $config['allow_quick_reply'] && ($topic_data['forum_flags'] & FORUM_FLAG_QUICK_REPLY) && $auth->acl_get('f_reply', $forum_id))]]></find>
+				<action type="replace-with"><![CDATA[if ($config['allow_quick_reply'] && (($user->data['is_registered'] && $user->optionget('viewquickreply')) || !$user->data['is_registered']) && ($topic_data['forum_flags'] & FORUM_FLAG_QUICK_REPLY) && $auth->acl_get('f_reply', $forum_id))]]></action>
 			</edit>
 			<edit>
-				<find><![CDATA[// Output the posts
-$first_unread = $post_unread = false;]]></find>
-				<action type="before-add"><![CDATA[// Check whether quick reply is enabled
-$s_quick_reply = false;
-if ($config['allow_quick_reply'] && (($user->data['is_registered'] && $user->optionget('viewquickreply')) || !$user->data['is_registered']) && ($topic_data['forum_flags'] & FORUM_FLAG_QUICK_REPLY) && $auth->acl_get('f_reply', $forum_id))
-{
-	// Quick reply enabled forum
-	$s_quick_reply = (($topic_data['forum_status'] == ITEM_UNLOCKED && $topic_data['topic_status'] == ITEM_UNLOCKED) || $auth->acl_get('m_edit', $forum_id)) ? true : false;
-}]]></action>
+				<find><![CDATA[			'S_QUICK_REPLY'			=> true,]]></find>
+				<action type="after-add"><![CDATA[			'S_DISPLAY_USERNAME'	=> (!$user->data['is_registered']) ? true : false,]]></action>
 			</edit>
 			<edit>
-				<find><![CDATA[	// Parse the message and subject
-	$message = censor_text($row['post_text']);]]></find>
-				<action type="after-add"><![CDATA[	$decoded_message = false;
-
-	if ($s_quick_reply)
-	{
-		$decoded_message = $message;
-		decode_message($decoded_message, $row['bbcode_uid']);
-
-		$decoded_message = bbcode_nl2br($decoded_message);
-	}]]></action>
-			</edit>
-			<edit>
-				<find><![CDATA[		'MESSAGE'			=> $message,]]></find>
-				<action type="after-add"><![CDATA[		'DECODED_MESSAGE'   => $decoded_message,]]></action>
-			</edit>
-			<edit>
-				<comment lang="en">Around line 1687.</comment>
-				<comment lang="pl">Około linii 1687.</comment>
-				<remove><![CDATA[// let's set up quick_reply
-$s_quick_reply = false;
-if ($user->data['is_registered'] && $config['allow_quick_reply'] && ($topic_data['forum_flags'] & FORUM_FLAG_QUICK_REPLY) && $auth->acl_get('f_reply', $forum_id))
-{
-	// Quick reply enabled forum
-	$s_quick_reply = (($topic_data['forum_status'] == ITEM_UNLOCKED && $topic_data['topic_status'] == ITEM_UNLOCKED) || $auth->acl_get('m_edit', $forum_id)) ? true : false;
-}]]></remove>
-			</edit>
-			<edit>
-				<find><![CDATA[		$s_attach_sig	= $config['allow_sig'] && $user->optionget('attachsig') && $auth->acl_get('f_sigs', $forum_id) && $auth->acl_get('u_sig');
-		$s_smilies		= $config['allow_smilies'] && $user->optionget('smilies') && $auth->acl_get('f_smilies', $forum_id);
-		$s_bbcode		= $config['allow_bbcode'] && $user->optionget('bbcode') && $auth->acl_get('f_bbcode', $forum_id);
-		$s_notify		= $config['allow_topic_notify'] && ($user->data['user_notify'] || $s_watching_topic['is_watching']);]]></find>
-				<action type="before-add"><![CDATA[		$user->add_lang(array('posting', 'mcp'));]]></action>
-				<action type="after-add"><![CDATA[		$s_url			= $config['allow_post_links'];
-		$s_img			= $s_bbcode && $auth->acl_get('f_img', $forum_id);
-		$s_flash		= $s_bbcode && $auth->acl_get('f_flash', $forum_id) && $config['allow_post_flash'];
-		$s_topic_icons	= false;
-
-		if ($topic_data['enable_icons'] && $auth->acl_get('f_icons', $forum_id))
-		{
-			$s_topic_icons = posting_gen_topic_icons('reply', $topic_data['icon_id']);
-		}]]></action>
-			</edit>
-			<edit>
-				<find><![CDATA[		$template->assign_vars(array(
-			'S_QUICK_REPLY'			=> true,
-			'U_QR_ACTION'			=> append_sid("{$phpbb_root_path}posting.$phpEx", "mode=reply&amp;f=$forum_id&amp;t=$topic_id"),
-			'QR_HIDDEN_FIELDS'		=> build_hidden_fields($qr_hidden_fields),
-			'SUBJECT'				=> 'Re: ' . censor_text($topic_data['topic_title']),
-		));]]></find>
-				<action type="replace-with"><![CDATA[		$template->assign_vars(array(
-			'L_ICON'					=> $user->lang['POST_ICON'],
-			'L_MESSAGE_BODY_EXPLAIN'	=> (intval($config['max_post_chars'])) ? sprintf($user->lang['MESSAGE_BODY_EXPLAIN'], intval($config['max_post_chars'])) : '',
-
-			'SUBJECT'				=> 'Re: ' . censor_text($topic_data['topic_title']),
-			'BBCODE_STATUS'			=> ($s_bbcode) ? sprintf($user->lang['BBCODE_IS_ON'], '<a href="' . append_sid("{$phpbb_root_path}faq.$phpEx", 'mode=bbcode') . '">', '</a>') : sprintf($user->lang['BBCODE_IS_OFF'], '<a href="' . append_sid("{$phpbb_root_path}faq.$phpEx", 'mode=bbcode') . '">', '</a>'),
-			'IMG_STATUS'			=> ($s_img) ? $user->lang['IMAGES_ARE_ON'] : $user->lang['IMAGES_ARE_OFF'],
-			'FLASH_STATUS'			=> ($s_flash) ? $user->lang['FLASH_IS_ON'] : $user->lang['FLASH_IS_OFF'],
-			'SMILIES_STATUS'		=> ($s_smilies) ? $user->lang['SMILIES_ARE_ON'] : $user->lang['SMILIES_ARE_OFF'],
-			'URL_STATUS'			=> ($s_bbcode && $s_url) ? $user->lang['URL_IS_ON'] : $user->lang['URL_IS_OFF'],
-			'U_QR_ACTION'			=> append_sid("{$phpbb_root_path}posting.$phpEx", "mode=reply&amp;f=$forum_id&amp;t=$topic_id"),
-			'QR_HIDDEN_FIELDS'		=> build_hidden_fields($qr_hidden_fields),
-
-			'S_QUICK_REPLY'			=> true,
-			'S_DISPLAY_USERNAME'	=> (!$user->data['is_registered']) ? true : false,
-			'S_SHOW_TOPIC_ICONS'	=> $s_topic_icons,
-			'S_BBCODE_ALLOWED'		=> $s_bbcode,
-			'S_SMILIES_ALLOWED'		=> $s_smilies,
-			'S_LINKS_ALLOWED'		=> $s_url,
-			'S_SAVE_ALLOWED'		=> ($auth->acl_get('u_savedrafts') && $user->data['is_registered']) ? true : false,
-			
-			'S_BBCODE_IMG'			=> $s_img,
-			'S_BBCODE_URL'			=> $s_url,
-			'S_BBCODE_FLASH'		=> $s_flash,
-			'S_BBCODE_QUOTE'		=> true,
-		));
-
-		// Build custom bbcodes array
-		display_custom_bbcodes();
-
-		// Generate smiley listing
-		generate_smilies('inline', $forum_id);
-		
-		if ($config['enable_post_confirm'] && !$user->data['is_registered'])
+				<find><![CDATA[		// Generate smiley listing
+		generate_smilies('inline', $forum_id);]]></find>
+				<action type="after-add"><![CDATA[		if ($config['enable_post_confirm'] && !$user->data['is_registered'])
 		{
 			include($phpbb_root_path . 'includes/captcha/captcha_factory.' . $phpEx);
 			$captcha =& phpbb_captcha_factory::get_instance($config['captcha_plugin']);
