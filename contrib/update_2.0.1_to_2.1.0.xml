@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl" ?>
 <!-- For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/ -->
 <mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
 	<header>
-		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
 		
-		<title lang="en">Full Quick Reply Editor</title>
+		<title lang="en">Update from 2.0.1 to 2.1.0</title>
 		
-		<description lang="en">Extends basic quick reply editor to the full version with post icons, smilies and BBCode buttons. Adds selective quote function available through default button. Allows users to disable editor in UCP and displays it, if guest posting permissions are set.</description>
-		<description lang="pl">Rozszerza podstawowy edytor szybkiej odpowiedzi o ikony posta, emotikony i znaczniki BBCode oraz dodaje funkcję selektywnego cytowania treści, dostępną pod domyślnym przyciskiem. Wyświetla edytor, jeśli ustawione są odpowiednie uprawnienia dla gości oraz pozwala użytkownikom na jego wyłączenie w ustawieniach profilu.</description>
+		<description lang="en">Extends basic quick reply editor to the full version with post icons, smilies and BBCode buttons. Adds selective quote function (available through default button), allows users to disable quick reply and administrators to restrict it only to the last page of a topic. Besides displays editor for anonymous users if guest posting permissions are set.</description>
 		
-		<author-notes lang="en">Update instructions from version 2.0.1 to 2.1.0. Attached SQL query activates Quick Reply for already registered users.</author-notes>
-		<author-notes lang="pl">Instrukcja aktualizacji z wersji 2.0.1 do 2.1.0. Załączone zapytanie SQL aktywuje szybką odpowiedź dla już zarejestrowanych użytkowników.</author-notes>
+		<author-notes lang="en">Works only with phpBB 3.0.6 and above! Automatic installer does not support Firebird, Oracle and SQLite databases.</author-notes>
 		
 		<author-group>
 			<author>
@@ -25,12 +23,12 @@
 			</author>
 		</author-group>
 		
-		<mod-version>2.1.1</mod-version>
+		<mod-version>2.1.0</mod-version>
 		
 		<installation>
 			<level>easy</level>
 			<time>600</time>
-			<target-version>3.0.8</target-version>
+			<target-version>3.0.9</target-version>
 		</installation>
 		
 		<history>
@@ -40,9 +38,6 @@
 				<changelog lang="en">
 					<change>Initial release</change>
 				</changelog>
-				<changelog lang="pl">
-					<change>Pierwsze wydanie</change>
-				</changelog>
 			</entry>
 			<entry>
 				<date>2009-12-24</date>
@@ -50,26 +45,16 @@
 				<changelog lang="en">
 					<change>Fixed undefined variable notice in debug mode</change>
 				</changelog>
-				<changelog lang="pl">
-					<change>Poprawiono komunikat o niezdefiniowanej zmiennej</change>
-				</changelog>
 			</entry>
 			<entry>
 				<date>2010-03-28</date>
 				<rev-version>2.0.0</rev-version>
 				<changelog lang="en">
-					<change>Quick Reply is expanded by default</change>
+					<change>Quick reply is expanded by default</change>
 					<change>Added selective quoting based on phpBB's feature</change>
 					<change>Added button to save post draft</change>
 					<change>Adjusted to phpBB 3.0.7</change>
 					<change>Updated MODX to version 1.2.5</change>
-				</changelog>
-				<changelog lang="pl">
-					<change>Szybka odpowiedź jest domyślnie rozwinięta</change>
-					<change>Dodano funkcję cytowania selektywnego, opartą o wbudowany mechanizm</change>
-					<change>Dodano przycisk do zapisywania szkicu posta</change>
-					<change>Przystosowano do phpBB 3.0.7</change>
-					<change>Zaktualizowano MODX do wersji 1.2.5</change>
 				</changelog>
 			</entry>
 			<entry>
@@ -79,33 +64,34 @@
 					<change>Updated instruction to work with newest AutoMOD</change>
 					<change>Changed $user->setup() method to $user->add_lang() in viewtopic.php</change>
 				</changelog>
-				<changelog lang="pl">
-					<change>Przystosowano instrukcję dla najnowszego AutoMOD–a</change>
-					<change>Zmieniono metodę $user->setup() na $user->add_lang() w pliku viewtopic.php</change>
-				</changelog>
 			</entry>
 			<entry>
 				<date>2010-11-04</date>
 				<rev-version>2.1.0</rev-version>
 				<changelog lang="en">
-					<change>Added option in UCP to enable or disable Quick Reply by user</change>
+					<change>Added option in UCP to enable or disable quick reply by user</change>
 					<change>Removed not necessary BBCode status information</change>
-					<change>Quick Reply visible for non-registered users if guest posting is enabled</change>
-				</changelog>
-				<changelog lang="pl">
-					<change>Dodano opcję w panelu zarządzania kontem, pozwalającą użytkownikowi na włączenie lub wyłącznie szybkiej odpowiedzi</change>
-					<change>Usunięto zbędne informacje o statusie BBCode</change>
-					<change>Szybka odpowiedź widoczna dla niezarejestrowanych użytkowników, jeśli pisanie przez gości jest włączone</change>
+					<change>Quick reply visible for non-registered users if guest posting is enabled</change>
 				</changelog>
 			</entry>
 			<entry>
 				<date>2010-11-22</date>
 				<rev-version>2.1.1</rev-version>
 				<changelog lang="en">
-					<change>Added missing option in ACP to enable or disable Quick Reply for users</change>
+					<change>Added missing option in ACP to enable or disable quick reply for users</change>
 				</changelog>
-				<changelog lang="pl">
-					<change>Dodano brakującą opcję w panelu administracji, pozwalającą na włączenie lub wyłącznie szybkiej odpowiedzi użytkownikom</change>
+			</entry>
+			<entry>
+				<date>2011-07-24</date>
+				<rev-version>2.2.0</rev-version>
+				<changelog lang="en">
+					<change>Added option in ACP to display quick reply only at the last page of a topic</change>
+					<change>Added UMIL based installator</change>
+					<change>Moved translations into separated files</change>
+					<change>Fixed problem with quoting username containing special characters</change>
+					<change>Fixed problem with uninstalling modification using AutoMOD</change>
+					<change>Fixed some minor bugs</change>
+					<change>Some cleaning up the code</change>
 				</changelog>
 			</entry>
 		</history>
@@ -113,13 +99,16 @@
 		<link-group>
 			<link type="parent" href="../install.xml" lang="en">install.xml</link>
 			<link type="contrib" href="update_2.1.0_to_2.1.1.xml" lang="en">update_2.1.0_to_2.1.1.xml</link>
-			<link type="language" href="../languages/de.xml" lang="en">de.xml</link>
+			<link type="contrib" href="update_2.1.1_to_2.2.0.xml" lang="en">update_2.1.1_to_2.2.0.xml</link>
 			<link type="language" href="../languages/pl.xml" lang="en">pl.xml</link>
 		</link-group>
 	</header>
 	
 	<action-group>
-		<sql><![CDATA[UPDATE phpbb_users SET user_options = user_options | 2048 WHERE user_type <> 2;]]></sql>
+		<copy>
+			<file from="root/umil/*.*" to="umil/*.*" />
+			<file from="root/install.php" to="install.php" />
+		</copy>
 		
 		<open src="includes/ucp/ucp_prefs.php">
 			<edit>
@@ -346,44 +335,6 @@
 			</edit>
 		</open>
 		
-		<open src="styles/subsilver2/template/quickreply_editor.html">
-			<edit>
-				<find><![CDATA[		<tr>
-			<th align="center" colspan="2">{L_QUICKREPLY}</th>
-		</tr>]]></find>
-				<action type="after-add"><![CDATA[		<!-- IF S_DISPLAY_USERNAME -->
-			<tr>
-				<td class="row1"><b class="genmed">{L_USERNAME}:</b></td>
-				<td class="row2"><input class="post" type="text" tabindex="1" name="username" size="25" value="{USERNAME}" /></td>
-			</tr>
-		<!-- ENDIF -->]]></action>
-			</edit>
-			<edit>
-				<find><![CDATA[		<tr>
-			<td class="cat" colspan="2" align="center">]]></find>
-				<action type="before-add"><![CDATA[		<!-- IF CAPTCHA_TEMPLATE and S_CONFIRM_CODE -->
-			<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
-		<!-- ENDIF -->]]></action>
-			</edit>
-		</open>
-		
-		<open src="styles/subsilver2/template/ucp_prefs_view.html">
-			<edit>
-				<find><![CDATA[<!-- IF S_CHANGE_CENSORS -->
-	<tr>
-		<td class="row1" width="50%"><b class="genmed">{L_DISABLE_CENSORS}:</b></td>
-		<td class="row2"><input type="radio" class="radio" name="wordcensor" value="1"<!-- IF S_DISABLE_CENSORS --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_YES}</span>&nbsp; &nbsp;<input type="radio" class="radio" name="wordcensor" value="0"<!-- IF not S_DISABLE_CENSORS --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_NO}</span></td>
-	</tr>
-<!-- ENDIF -->]]></find>
-				<action type="after-add"><![CDATA[<!-- IF S_QUICK_REPLY -->
-	<tr>
-		<td class="row1" width="50%"><b class="genmed">{L_VIEW_QUICK_REPLY}:</b></td>
-		<td class="row2"><input type="radio" class="radio" name="quickreply" value="1"<!-- IF S_USER_QUICK_REPLY --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_YES}</span>&nbsp; &nbsp;<input type="radio" class="radio" name="quickreply" value="0"<!-- IF not S_USER_QUICK_REPLY --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_NO}</span></td>
-	</tr>
-<!-- ENDIF -->]]></action>
-			</edit>
-		</open>
-		
 		<open src="viewtopic.php">
 			<edit>
 				<find><![CDATA[if ($user->data['is_registered'] && $config['allow_quick_reply'] && ($topic_data['forum_flags'] & FORUM_FLAG_QUICK_REPLY) && $auth->acl_get('f_reply', $forum_id))]]></find>
@@ -414,7 +365,6 @@
 			</edit>
 		</open>
 		
-		<diy-instructions lang="en">Purge forum cache and refresh style templates.</diy-instructions>
-		<diy-instructions lang="pl">Wyczyść pamięć podręczną forum oraz odśwież szablony stylu.</diy-instructions>
+		<php-installer>install.php</php-installer>
 	</action-group>
 </mod>
