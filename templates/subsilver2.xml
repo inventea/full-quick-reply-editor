@@ -1,34 +1,37 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<?xml-stylesheet type="text/xsl" href="../modx.prosilver.en.xsl" ?>
-<!-- For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/ -->
-<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.3.xsd">
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!-- For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/ -->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
 	<header>
-		<license><![CDATA[GNU General Public License v3]]></license>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
 		
 		<title lang="en"><![CDATA[Full Quick Reply Editor]]></title>
 		<title lang="pl"><![CDATA[Full Quick Reply Editor]]></title>
 		
-		<description lang="en"><![CDATA[Transforms the basic quick reply editor into the full version with post icons, emoticons and BBCode buttons.]]></description>
-		<description lang="pl"><![CDATA[Rozszerza funkcje podstawowego edytora szybkiej odpowiedzi o ikony posta, emotikony oraz znaczniki BBCode.]]></description>
+		<description lang="en"><![CDATA[Expands quick reply by default and transforms basic editor into full version with post icons, emoticons and BBCode buttons. Adds selective quoting option available through default button.]]></description>
+		<description lang="pl"><![CDATA[Rozwija domyślnie szybką odpowiedź oraz rozszerza funkcje podstawowego edytora o ikony posta, emotikony i znaczniki BBCode. Dodaje opcję cytowania selektywnego dostępną pod domyślnym przyciskiem.]]></description>
 		
-		<author-notes lang="en"><![CDATA[Works only with phpBB 3.0.6 and above!]]></author-notes>
-		<author-notes lang="pl"><![CDATA[Działa wyłącznie na phpBB 3.0.6 i nowszym!]]></author-notes>
+		<author-notes lang="en"><![CDATA[Works only with phpBB 3.0.6 and above! Premoded files in contrib/ directory.]]></author-notes>
+		<author-notes lang="pl"><![CDATA[Działa wyłącznie na phpBB 3.0.6 i nowszym! Zmodyfikowane pliki w katalogu contrib/.]]></author-notes>
 		
 		<author-group>
 			<author>
 				<realname><![CDATA[Jarosław Pustuła]]></realname>
-				<username phpbbcom="no"><![CDATA[medeish]]></username>
+				<username><![CDATA[medeish]]></username>
 				<homepage><![CDATA[http://inventia.io]]></homepage>
 				<email><![CDATA[office@inventia.io]]></email>
+				<contributions-group>
+					<contributions status="current" from="2009-11-26" position="Developer"></contributions>
+				</contributions-group>
 			</author>
 		</author-group>
 		
-		<mod-version>1.0.1</mod-version>
+		<mod-version>2.0.1</mod-version>
 		
 		<installation>
 			<level>easy</level>
 			<time>300</time>
-			<target-version>3.0.6</target-version>
+			<target-version>3.0.7-PL1</target-version>
 		</installation>
 		
 		<history>
@@ -46,17 +49,43 @@
 				<date>2009-12-24</date>
 				<rev-version>1.0.1</rev-version>
 				<changelog lang="en">
-					<change><![CDATA[Fixed undefined variable notice]]></change>
+					<change><![CDATA[Fixed undefined variable notice in debug mode]]></change>
 				</changelog>
 				<changelog lang="pl">
 					<change><![CDATA[Poprawiono komunikat o niezdefiniowanej zmiennej]]></change>
 				</changelog>
 			</entry>
+			<entry>
+				<date>2010-03-28</date>
+				<rev-version>2.0.0</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Quick reply is expanded by default]]></change>
+					<change><![CDATA[Added selective quoting based on phpBB's feature]]></change>
+					<change><![CDATA[Added button to save post draft]]></change>
+					<change><![CDATA[Adjusted to phpBB 3.0.7]]></change>
+					<change><![CDATA[Updated MODX to version 1.2.5]]></change>
+				</changelog>
+				<changelog lang="pl">
+					<change><![CDATA[Szybka odpowiedź jest domyślnie rozwinięta]]></change>
+					<change><![CDATA[Dodano cytowanie selektywne oparte na wbudowanych funkcjach]]></change>
+					<change><![CDATA[Dodano przycisk do zapisywania szkicu posta]]></change>
+					<change><![CDATA[Przystosowano do phpBB 3.0.7]]></change>
+					<change><![CDATA[Zaktualizowano MODX do wersji 1.2.5]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2010-05-04</date>
+				<rev-version>2.0.1</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Updated modification instruction to work with newest AutoMOD]]></change>
+					<change><![CDATA[Changed $user->setup() method to $user->add_lang() in viewtopic.php]]></change>
+				</changelog>
+				<changelog lang="pl">
+					<change><![CDATA[Przystosowano instrukcję modyfikacji dla najnowszego AutoMOD–a]]></change>
+					<change><![CDATA[Zmieniono metodę $user->setup() na $user->add_lang() w pliku viewtopic.php]]></change>
+				</changelog>
+			</entry>
 		</history>
-		
-		<link-group>
-			<link type="template" href="prosilver.xml" lang="en">prosilver</link>
-		</link-group>
 	</header>
 	
 	<action-group>
@@ -67,14 +96,9 @@
 			</edit>
 			<edit>
 				<find><![CDATA[		<tr>
-			<td class="row1" width="22%"><b class="genmed">{L_SUBJECT}:</b></td>
-			<td  class="row2" width="78%"><input class="post" style="width:450px" type="text" name="subject" size="45" maxlength="64" tabindex="2" value="{SUBJECT}" /></td>
-		</tr>
-		<tr>
-			<td class="row1" width="22%"><b class="genmed">{L_MESSAGE}:</b></td>
-			<td class="row2" valign="top" align="left" width="78%"><textarea name="message" rows="7" cols="76" tabindex="3"  style="width: 98%;"></textarea> </td>
+			<th align="center" colspan="2">{L_QUICKREPLY}</th>
 		</tr>]]></find>
-				<action type="replace-with"><![CDATA[		<!-- IF S_SHOW_TOPIC_ICONS -->
+				<action type="after-add"><![CDATA[		<!-- IF S_SHOW_TOPIC_ICONS -->
 		<tr>
 			<td class="row1"><b class="genmed">{L_ICON}:</b></td>
 			<td class="row2">
@@ -85,13 +109,12 @@
 				</table>
 			</td>
 		</tr>
-		<!-- ENDIF -->
-		<tr>
-			<td class="row1" width="22%"><b class="genmed">{L_SUBJECT}:</b></td>
-			<td  class="row2" width="78%"><input class="post" style="width:450px" type="text" name="subject" size="45" maxlength="64" tabindex="2" value="{SUBJECT}" /></td>
-		</tr>
-		<tr>
-			<td class="row1" valign="top"><b class="genmed">{L_MESSAGE_BODY}:</b><br /><span class="gensmall">{L_MESSAGE_BODY_EXPLAIN}&nbsp;</span><br /><br />
+		<!-- ENDIF -->]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[			<td class="row1" width="22%"><b class="genmed">{L_MESSAGE}:</b></td>
+			<td class="row2" valign="top" align="left" width="78%"><textarea name="message" rows="7" cols="76" tabindex="3"  style="width: 98%;"></textarea> </td>]]></find>
+				<action type="replace-with"><![CDATA[			<td class="row1" valign="top"><b class="genmed">{L_MESSAGE_BODY}:</b><br /><span class="gensmall">{L_MESSAGE_BODY_EXPLAIN}&nbsp;</span><br /><br />
 			<!-- IF S_SMILIES_ALLOWED -->
 				<table width="100%" cellspacing="5" cellpadding="0" border="0" align="center">
 				<tr>
@@ -137,16 +160,37 @@
 					<!-- ENDIF -->
 				</tr>
 				</table>
-			</td>
-		</tr>]]></action>
+			</td>]]></action>
 			</edit>
 			<edit>
 				<find><![CDATA[				<input class="btnmain" type="submit" accesskey="s" tabindex="6" name="post" value="{L_SUBMIT}" />&nbsp;
 				<input class="btnlite" type="submit" accesskey="f" tabindex="7" name="full_editor" value="{L_FULL_EDITOR}" />]]></find>
 				<action type="replace-with"><![CDATA[				<input class="btnlite" type="submit" tabindex="4" name="preview" value="{L_PREVIEW}" />&nbsp;
 				<input class="btnmain" type="submit" accesskey="s" tabindex="5" name="post" value="{L_SUBMIT}" />&nbsp;
-				<input class="btnlite" type="submit" accesskey="f" tabindex="6" name="full_editor" value="{L_FULL_EDITOR}" />]]></action>
+				<!-- IF not S_SHOW_ATTACH_BOX and not S_SHOW_POLL_BOX -->
+					<!-- IF S_SAVE_ALLOWED --><input class="btnlite" type="submit" accesskey="k" tabindex="6" name="save" value="{L_SAVE}" />&nbsp;<!-- ENDIF -->
+				<!-- ENDIF -->
+				<input class="btnlite" type="submit" accesskey="c" tabindex="6" name="cancel" value="{L_CANCEL}" />]]></action>
 			</edit>
 		</open>
+
+		<open src="styles/subsilver2/template/viewtopic_body.html">
+			<edit>
+				<find><![CDATA[						<div class="postbody">{postrow.MESSAGE}</div>]]></find>
+				<action type="after-add"><![CDATA[					<!-- IF postrow.U_QUOTE and postrow.DECODED_MESSAGE -->
+						<div id="message_{postrow.POST_ID}" style="display: none;">{postrow.DECODED_MESSAGE}</div>
+					<!-- ENDIF -->]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[			<td><div class="gensmall" style="float: {S_CONTENT_FLOW_BEGIN};">&nbsp;<!-- IF postrow.U_POST_AUTHOR --><a href="{postrow.U_POST_AUTHOR}">{PROFILE_IMG}</a> <!-- ENDIF --> <!-- IF postrow.U_PM --><a href="{postrow.U_PM}">{PM_IMG}</a> <!-- ENDIF --> <!-- IF postrow.U_EMAIL --><a href="{postrow.U_EMAIL}">{EMAIL_IMG}</a> <!-- ENDIF -->&nbsp;</div> <div class="gensmall" style="float: {S_CONTENT_FLOW_END};"><!-- IF not S_IS_BOT --><!-- IF postrow.U_EDIT --><a href="{postrow.U_EDIT}">{EDIT_IMG}</a> <!-- ENDIF --> <!-- IF postrow.U_QUOTE --><a href="{postrow.U_QUOTE}">{QUOTE_IMG}</a> <!-- ENDIF --> <!-- ENDIF -->&nbsp;</div></td>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<!-- IF postrow.U_QUOTE --><a href="{postrow.U_QUOTE}">{QUOTE_IMG}</a> <!-- ENDIF -->]]></inline-find>
+					<inline-action type="replace-with"><![CDATA[<!-- IF S_QUICK_REPLY and postrow.DECODED_MESSAGE --><a href="#" onclick="addquote({postrow.POST_ID},'{postrow.POST_AUTHOR}'); return false;">{QUOTE_IMG}</a> <!-- ELSE IF postrow.U_QUOTE --><a href="{postrow.U_QUOTE}">{QUOTE_IMG}</a> <!-- ENDIF -->]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		
+		<diy-instructions lang="en"><![CDATA[Purge the forum cache and refresh style templates.]]></diy-instructions>
+		<diy-instructions lang="pl"><![CDATA[Wyczyść pamięć podręczną forum oraz odśwież szablony stylu.]]></diy-instructions>
 	</action-group>
 </mod>

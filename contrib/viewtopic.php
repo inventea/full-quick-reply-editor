@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB3
-* @version $Id: viewtopic.php 10179 2009-09-23 08:19:22Z nickvergessen $
+* @version $Id$
 * @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -186,6 +186,13 @@ $sql_array = array(
 
 	'FROM'		=> array(FORUMS_TABLE => 'f'),
 );
+
+// Firebird handles two columns of the same name a little differently, this
+// addresses that by forcing the forum_id to come from the forums table.
+if ($db->sql_layer === 'firebird')
+{
+	$sql_array['SELECT'] = 'f.forum_id AS forum_id, ' . $sql_array['SELECT'];
+}
 
 // The FROM-Order is quite important here, else t.* columns can not be correctly bound.
 if ($post_id)
@@ -1315,6 +1322,14 @@ $template->assign_vars(array(
 	'S_NUM_POSTS' => sizeof($post_list))
 );
 
+// Check whether quick reply is enabled
+$s_quick_reply = false;
+if ($user->data['is_registered'] && $config['allow_quick_reply'] && ($topic_data['forum_flags'] & FORUM_FLAG_QUICK_REPLY) && $auth->acl_get('f_reply', $forum_id))
+{
+	// Quick reply enabled forum
+	$s_quick_reply = (($topic_data['forum_status'] == ITEM_UNLOCKED && $topic_data['topic_status'] == ITEM_UNLOCKED) || $auth->acl_get('m_edit', $forum_id)) ? true : false;
+}
+
 // Output the posts
 $first_unread = $post_unread = false;
 for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
@@ -1346,7 +1361,16 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 
 	// Parse the message and subject
 	$message = censor_text($row['post_text']);
+	$decoded_message = false;
 
+	if ($s_quick_reply)
+	{
+		$decoded_message = $message;
+		decode_message($decoded_message, $row['bbcode_uid']);
+
+		$decoded_message = bbcode_nl2br($decoded_message);
+	}
+	
 	// Second parse bbcode here
 	if ($row['bbcode_bitfield'])
 	{
@@ -1502,6 +1526,7 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 		'POST_DATE'			=> $user->format_date($row['post_time'], false, ($view == 'print') ? true : false),
 		'POST_SUBJECT'		=> $row['post_subject'],
 		'MESSAGE'			=> $message,
+		'DECODED_MESSAGE'   => $decoded_message,
 		'SIGNATURE'			=> ($row['enable_sig']) ? $user_cache[$poster_id]['sig'] : '',
 		'EDITED_MESSAGE'	=> $l_edited_by,
 		'EDIT_REASON'		=> $row['post_edit_reason'],
@@ -1679,26 +1704,24 @@ else if (!$all_marked_read)
 }
 
 // let's set up quick_reply
-$s_allowed_reply = ((!$auth->acl_get('f_reply', $forum_id) || ($topic_data['forum_status'] == ITEM_LOCKED) || ($topic_data['topic_status'] == ITEM_LOCKED)) && !$auth->acl_get('m_edit', $forum_id)) ? false : true;
-$s_quick_reply = $s_allowed_reply && $user->data['is_registered'] && $config['allow_quick_reply'] && ($topic_data['forum_flags'] & FORUM_FLAG_QUICK_REPLY);
-
 if ($s_can_vote || $s_quick_reply)
 {
 	add_form_key('posting');
 
 	if ($s_quick_reply)
 	{
-		$user->setup(array('posting', 'mcp'));
+		$user->add_lang(array('posting', 'mcp'));
 		
 		$s_attach_sig	= $config['allow_sig'] && $user->optionget('attachsig') && $auth->acl_get('f_sigs', $forum_id) && $auth->acl_get('u_sig');
 		$s_smilies		= $config['allow_smilies'] && $user->optionget('smilies') && $auth->acl_get('f_smilies', $forum_id);
 		$s_bbcode		= $config['allow_bbcode'] && $user->optionget('bbcode') && $auth->acl_get('f_bbcode', $forum_id);
-		$s_notify		= $config['allow_topic_notify'] && $user->data['user_notify'];
-		$s_url			= $config['allow_post_links']; 
+		$s_notify		= $config['allow_topic_notify'] && ($user->data['user_notify'] || $s_watching_topic['is_watching']);
+		
+		$s_url			= $config['allow_post_links'];
 		$s_img			= $s_bbcode && $auth->acl_get('f_img', $forum_id);
 		$s_flash		= $s_bbcode && $auth->acl_get('f_flash', $forum_id) && $config['allow_post_flash'];
 		$s_topic_icons	= false;
-		
+
 		if ($topic_data['enable_icons'] && $auth->acl_get('f_icons', $forum_id))
 		{
 			$s_topic_icons = posting_gen_topic_icons('reply', $topic_data['icon_id']);
@@ -1722,7 +1745,7 @@ if ($s_can_vote || $s_quick_reply)
 		$template->assign_vars(array(
 			'L_ICON'					=> $user->lang['POST_ICON'],
 			'L_MESSAGE_BODY_EXPLAIN'	=> (intval($config['max_post_chars'])) ? sprintf($user->lang['MESSAGE_BODY_EXPLAIN'], intval($config['max_post_chars'])) : '',
-	
+
 			'SUBJECT'				=> 'Re: ' . censor_text($topic_data['topic_title']),
 			'BBCODE_STATUS'			=> ($s_bbcode) ? sprintf($user->lang['BBCODE_IS_ON'], '<a href="' . append_sid("{$phpbb_root_path}faq.$phpEx", 'mode=bbcode') . '">', '</a>') : sprintf($user->lang['BBCODE_IS_OFF'], '<a href="' . append_sid("{$phpbb_root_path}faq.$phpEx", 'mode=bbcode') . '">', '</a>'),
 			'IMG_STATUS'			=> ($s_img) ? $user->lang['IMAGES_ARE_ON'] : $user->lang['IMAGES_ARE_OFF'],
@@ -1731,22 +1754,23 @@ if ($s_can_vote || $s_quick_reply)
 			'URL_STATUS'			=> ($s_bbcode && $s_url) ? $user->lang['URL_IS_ON'] : $user->lang['URL_IS_OFF'],
 			'U_QR_ACTION'			=> append_sid("{$phpbb_root_path}posting.$phpEx", "mode=reply&amp;f=$forum_id&amp;t=$topic_id"),
 			'QR_HIDDEN_FIELDS'		=> build_hidden_fields($qr_hidden_fields),
-			
+
 			'S_QUICK_REPLY'			=> true,
 			'S_SHOW_TOPIC_ICONS'	=> $s_topic_icons,
 			'S_BBCODE_ALLOWED'		=> $s_bbcode,
 			'S_SMILIES_ALLOWED'		=> $s_smilies,
 			'S_LINKS_ALLOWED'		=> $s_url,
+			'S_SAVE_ALLOWED'		=> ($auth->acl_get('u_savedrafts') && $user->data['is_registered']) ? true : false,
 			
 			'S_BBCODE_IMG'			=> $s_img,
 			'S_BBCODE_URL'			=> $s_url,
 			'S_BBCODE_FLASH'		=> $s_flash,
 			'S_BBCODE_QUOTE'		=> true,
 		));
-		
+
 		// Build custom bbcodes array
 		display_custom_bbcodes();
-		
+
 		// Generate smiley listing
 		generate_smilies('inline', $forum_id);
 	}
@@ -1760,6 +1784,12 @@ if ($s_can_vote || $s_quick_reply)
 if (empty($_REQUEST['f']))
 {
 	$_REQUEST['f'] = $forum_id;
+}
+
+// We need to do the same with the topic_id. See #53025.
+if (empty($_REQUEST['t']) && !empty($topic_id))
+{
+	$_REQUEST['t'] = $topic_id;
 }
 
 // Output the page

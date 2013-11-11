@@ -1,5 +1,4 @@
 <form id="postform" method="post" action="{U_QR_ACTION}">
-
 	<table class="tablebg" width="100%" cellspacing="1">
 		<tr>
 			<th align="center" colspan="2">{L_QUICKREPLY}</th>
@@ -73,14 +72,16 @@
 			<td class="cat" colspan="2" align="center">
 				<input class="btnlite" type="submit" tabindex="4" name="preview" value="{L_PREVIEW}" />&nbsp;
 				<input class="btnmain" type="submit" accesskey="s" tabindex="5" name="post" value="{L_SUBMIT}" />&nbsp;
-				<input class="btnlite" type="submit" accesskey="f" tabindex="6" name="full_editor" value="{L_FULL_EDITOR}" />
+				<!-- IF not S_SHOW_ATTACH_BOX and not S_SHOW_POLL_BOX -->
+					<!-- IF S_SAVE_ALLOWED --><input class="btnlite" type="submit" accesskey="k" tabindex="6" name="save" value="{L_SAVE}" />&nbsp;<!-- ENDIF -->
+				<!-- ENDIF -->
+				<input class="btnlite" type="submit" accesskey="c" tabindex="6" name="cancel" value="{L_CANCEL}" />
 
 				{S_FORM_TOKEN}
 				{QR_HIDDEN_FIELDS}
 			</td>
 		</tr>
 	</table>
-	
 </form>
 
 <br clear="all" />
