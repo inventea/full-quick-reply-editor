@@ -7,8 +7,8 @@
 		
 		<title lang="en">Full Quick Reply Editor</title>
 		
-		<description lang="en">Extends basic quick reply editor to the full version with post icons, smilies and BBCode buttons. Allows users to disable editor in UCP and make it visible if guest posting is enabled. Adds selective quote option available through default button.</description>
-		<description lang="pl">Rozszerza podstawowy edytor szybkiej odpowiedzi o ikony posta, emotikony i znaczniki BBCode. Daje użytkownikom możliwość wyłączenia edytora oraz czyni go widocznym, jeśli opcja zamieszczania postów przez gości jest włączona. Dodaje ponadto funkcję cytowania selektywnego, dostępną pod domyślnym przyciskiem.</description>
+		<description lang="en">Extends basic quick reply editor to the full version with post icons, smilies and BBCode buttons. Adds selective quote function available through default button. Allows users to disable editor in UCP and displays it, if guest posting permissions are set.</description>
+		<description lang="pl">Rozszerza podstawowy edytor szybkiej odpowiedzi o ikony posta, emotikony i znaczniki BBCode oraz dodaje funkcję selektywnego cytowania treści, dostępną pod domyślnym przyciskiem. Wyświetla edytor, jeśli ustawione są odpowiednie uprawnienia dla gości oraz pozwala użytkownikom na jego wyłączenie w ustawieniach profilu.</description>
 		
 		<author-notes lang="en">Works only with phpBB 3.0.6 and above!</author-notes>
 		<author-notes lang="pl">Działa wyłącznie na phpBB 3.0.6 i nowszym!</author-notes>
@@ -25,12 +25,12 @@
 			</author>
 		</author-group>
 		
-		<mod-version>2.1.0</mod-version>
+		<mod-version>2.1.1</mod-version>
 		
 		<installation>
 			<level>easy</level>
 			<time>600</time>
-			<target-version>3.0.7-PL1</target-version>
+			<target-version>3.0.8</target-version>
 		</installation>
 		
 		<history>
@@ -96,6 +96,16 @@
 					<change>Dodano opcję w panelu zarządzania kontem, pozwalającą użytkownikowi na włączenie lub wyłącznie szybkiej odpowiedzi</change>
 					<change>Usunięto zbędne informacje o statusie BBCode</change>
 					<change>Szybka odpowiedź widoczna dla niezarejestrowanych użytkowników, jeśli pisanie przez gości jest włączone</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2010-11-22</date>
+				<rev-version>2.1.1</rev-version>
+				<changelog lang="en">
+					<change>Added missing option in ACP to enable or disable Quick Reply for users</change>
+				</changelog>
+				<changelog lang="pl">
+					<change>Dodano brakującą opcję w panelu administracji, pozwalającą na włączenie lub wyłącznie szybkiej odpowiedzi użytkownikom</change>
 				</changelog>
 			</entry>
 		</history>

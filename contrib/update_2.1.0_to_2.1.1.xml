@@ -10,6 +10,9 @@
 		<description lang="en">Extends basic quick reply editor to the full version with post icons, smilies and BBCode buttons. Adds selective quote function available through default button. Allows users to disable editor in UCP and displays it, if guest posting permissions are set.</description>
 		<description lang="pl">Rozszerza podstawowy edytor szybkiej odpowiedzi o ikony posta, emotikony i znaczniki BBCode oraz dodaje funkcję selektywnego cytowania treści, dostępną pod domyślnym przyciskiem. Wyświetla edytor, jeśli ustawione są odpowiednie uprawnienia dla gości oraz pozwala użytkownikom na jego wyłączenie w ustawieniach profilu.</description>
 		
+		<author-notes lang="en">Update instructions from version 2.1.0 to 2.1.1.</author-notes>
+		<author-notes lang="pl">Instrukcja aktualizacji z wersji 2.1.0 do 2.1.1.</author-notes>
+		
 		<author-group>
 			<author>
 				<realname>Jarosław Pustuła</realname>
@@ -109,17 +112,42 @@
 		
 		<link-group>
 			<link type="parent" href="../install.xml" lang="en">install.xml</link>
-			<link type="language" href="de.xml" lang="en">de.xml</link>
-			<link type="template" href="../templates/subsilver2.xml" lang="en">subsilver2.xml</link>
+			<link type="contrib" href="update_2.0.1_to_2.1.0.xml" lang="en">update_2.0.1_to_2.1.0.xml</link>
 		</link-group>
 	</header>
 	
-	<action-group>
-		<open src="language/pl/ucp.php">
+	<action-group>	
+		<open src="adm/style/acp_users_prefs.html">
 			<edit>
-				<find><![CDATA[	'VIEW_POSTS_KEY'		=> 'Wyświetlaj posty wg',]]></find>
-				<action type="after-add"><![CDATA[	'VIEW_QUICK_REPLY'		=> 'Wyświetlaj szybką odpowiedź',]]></action>
+				<find><![CDATA[	<dl> 
+		<dt><label for="view_avatars">{L_VIEW_AVATARS}:</label></dt>
+		<dd><label><input type="radio" class="radio" name="view_avatars" value="1"<!-- IF VIEW_AVATARS --> id="view_avatars" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="view_avatars" value="0"<!-- IF not VIEW_AVATARS --> id="view_avatars" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+	</dl>]]></find>
+				<action type="after-add"><![CDATA[	<dl> 
+		<dt><label for="view_quickreply">{L_VIEW_QUICK_REPLY}:</label></dt>
+		<dd><label><input type="radio" class="radio" name="view_quickreply" value="1"<!-- IF VIEW_QUICK_REPLY --> id="view_quickreply" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="view_quickreply" value="0"<!-- IF not VIEW_QUICK_REPLY --> id="view_quickreply" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+	</dl>]]></action>
 			</edit>
 		</open>
+		
+		<open src="includes/acp/acp_users.php">
+			<edit>
+				<find><![CDATA[					'view_avatars'		=> request_var('view_avatars', $this->optionget($user_row, 'viewavatars')),]]></find>
+				<action type="after-add"><![CDATA[					'view_quickreply'	=> request_var('view_quickreply', $this->optionget($user_row, 'viewquickreply')),]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[						$this->optionset($user_row, 'viewavatars', $data['view_avatars']);]]></find>
+				<action type="after-add"><![CDATA[						$this->optionset($user_row, 'viewquickreply', $data['view_quickreply']);]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[					'VIEW_AVATARS'		=> $data['view_avatars'],]]></find>
+				<action type="after-add"><![CDATA[					'VIEW_QUICK_REPLY'	=> $data['view_quickreply'],]]></action>
+			</edit>
+		</open>
+		
+		<diy-instructions lang="en">Purge forum cache and refresh style templates.</diy-instructions>
+		<diy-instructions lang="pl">Wyczyść pamięć podręczną forum oraz odśwież szablony stylu.</diy-instructions>
 	</action-group>
 </mod>

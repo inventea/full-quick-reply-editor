@@ -7,11 +7,11 @@
 		
 		<title lang="en">Full Quick Reply Editor</title>
 		
-		<description lang="en">Extends basic quick reply editor to the full version with post icons, smilies and BBCode buttons. Allows users to disable editor in UCP and make it visible if guest posting is enabled. Adds selective quote option available through default button.</description>
-		<description lang="pl">Rozszerza podstawowy edytor szybkiej odpowiedzi o ikony posta, emotikony i znaczniki BBCode. Daje użytkownikom możliwość wyłączenia edytora oraz czyni go widocznym, jeśli opcja zamieszczania postów przez gości jest włączona. Dodaje ponadto funkcję cytowania selektywnego, dostępną pod domyślnym przyciskiem.</description>
+		<description lang="en">Extends basic quick reply editor to the full version with post icons, smilies and BBCode buttons. Adds selective quote function available through default button. Allows users to disable editor in UCP and displays it, if guest posting permissions are set.</description>
+		<description lang="pl">Rozszerza podstawowy edytor szybkiej odpowiedzi o ikony posta, emotikony i znaczniki BBCode oraz dodaje funkcję selektywnego cytowania treści, dostępną pod domyślnym przyciskiem. Wyświetla edytor, jeśli ustawione są odpowiednie uprawnienia dla gości oraz pozwala użytkownikom na jego wyłączenie w ustawieniach profilu.</description>
 		
-		<author-notes lang="en">Works only with phpBB 3.0.6 and above!</author-notes>
-		<author-notes lang="pl">Działa wyłącznie na phpBB 3.0.6 i nowszym!</author-notes>
+		<author-notes lang="en">Update instructions from version 2.0.1 to 2.1.0. Attached SQL query activates Quick Reply for already registered users.</author-notes>
+		<author-notes lang="pl">Instrukcja aktualizacji z wersji 2.0.1 do 2.1.0. Załączone zapytanie SQL aktywuje szybką odpowiedź dla już zarejestrowanych użytkowników.</author-notes>
 		
 		<author-group>
 			<author>
@@ -25,12 +25,12 @@
 			</author>
 		</author-group>
 		
-		<mod-version>2.1.0</mod-version>
+		<mod-version>2.1.1</mod-version>
 		
 		<installation>
 			<level>easy</level>
 			<time>600</time>
-			<target-version>3.0.7-PL1</target-version>
+			<target-version>3.0.8</target-version>
 		</installation>
 		
 		<history>
@@ -98,9 +98,21 @@
 					<change>Szybka odpowiedź widoczna dla niezarejestrowanych użytkowników, jeśli pisanie przez gości jest włączone</change>
 				</changelog>
 			</entry>
+			<entry>
+				<date>2010-11-22</date>
+				<rev-version>2.1.1</rev-version>
+				<changelog lang="en">
+					<change>Added missing option in ACP to enable or disable Quick Reply for users</change>
+				</changelog>
+				<changelog lang="pl">
+					<change>Dodano brakującą opcję w panelu administracji, pozwalającą na włączenie lub wyłącznie szybkiej odpowiedzi użytkownikom</change>
+				</changelog>
+			</entry>
 		</history>
 		
 		<link-group>
+			<link type="parent" href="../install.xml" lang="en">install.xml</link>
+			<link type="contrib" href="update_2.1.0_to_2.1.1.xml" lang="en">update_2.1.0_to_2.1.1.xml</link>
 			<link type="language" href="../languages/de.xml" lang="en">de.xml</link>
 			<link type="language" href="../languages/pl.xml" lang="en">pl.xml</link>
 		</link-group>
@@ -108,7 +120,7 @@
 	
 	<action-group>
 		<sql><![CDATA[UPDATE phpbb_users SET user_options = user_options | 2048 WHERE user_type <> 2;]]></sql>
-			
+		
 		<open src="includes/ucp/ucp_prefs.php">
 			<edit>
 				<find><![CDATA[					'wordcensor'	=> request_var('wordcensor', (bool) $user->optionget('viewcensors')),]]></find>
