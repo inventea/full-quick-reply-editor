@@ -28,7 +28,7 @@
 -----
 
 - Updated installation instruction to work with newest AutoMOD
-- Changed $user->setup() method to $user->add_lang() in viewtopic.php
+- Changed `$user->setup()` method to `$user->add_lang()` in viewtopic.php
 
 
 2.0.0
