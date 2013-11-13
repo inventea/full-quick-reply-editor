@@ -5,7 +5,7 @@ Full Quick Reply Editor is a modification for phpBB 3.0.x that extends basic qui
 - Allow users to selective quote posts and private messages.
 - Allow users to disable quick reply in User Control Panel.
 - Allow administrators to restrict quick reply to the last page of a topic.
-- Display quick reply for guests if they have writ permissions.
+- Display quick reply for guests if they have write permissions.
 
 
 Installation
