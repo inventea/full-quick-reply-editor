@@ -11,4 +11,4 @@ Full Quick Reply Editor is a modification for phpBB 3.0.x that extends basic qui
 Installation
 ------------
 
-Modification is compatible with [AutoMOD](https://www.phpbb.com/mods/automod/). If you prefer manual installation, follow instructions from `install.xml`.
+Modification is compatible with [AutoMOD](https://www.phpbb.com/mods/automod/). If you prefer manual installation, open `install.xml` in the browser and follow the instructions.
